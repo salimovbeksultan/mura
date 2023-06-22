@@ -1,18 +1,27 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="4">
+        <login-form></login-form>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import LoginForm from '@/components/LoginForm.vue'
 
 export default {
   name: 'HomeView',
+
   components: {
-    HelloWorld
+    LoginForm
+  },
+
+  created () {
+    if (localStorage.getItem('userToken')) {
+      this.$router.push({ name: 'dashboard' })
+    }
   }
 }
 </script>
